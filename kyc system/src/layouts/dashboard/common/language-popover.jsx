@@ -4,30 +4,27 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import PeopleIcon from '@mui/icons-material/People';
 
 // ----------------------------------------------------------------------
 
-const LANGS = [
+const USER_TYPES = [
   {
-    value: 'en',
-    label: 'English',
-    icon: '/assets/icons/ic_flag_en.svg',
+    value: 'data_entry',
+    label: 'Data Entry',
+    // icon: '/assets/icons/ic_flag_de.svg',
   },
   {
-    value: 'de',
-    label: 'German',
-    icon: '/assets/icons/ic_flag_de.svg',
-  },
-  {
-    value: 'fr',
-    label: 'French',
-    icon: '/assets/icons/ic_flag_fr.svg',
+    value: 'approver',
+    label: 'Approver',
+    // icon: '/assets/icons/ic_flag_fr.svg',
   },
 ];
 
 // ----------------------------------------------------------------------
 
-export default function LanguagePopover() {
+export default function ProfilePopover() {
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -50,7 +47,7 @@ export default function LanguagePopover() {
           }),
         }}
       >
-        <img src={LANGS[0].icon} alt={LANGS[0].label} />
+        <PeopleIcon alt="Profile" src="/assets/icons/ic_profile.svg" />
       </IconButton>
 
       <Popover
@@ -68,15 +65,12 @@ export default function LanguagePopover() {
           },
         }}
       >
-        {LANGS.map((option) => (
+        {USER_TYPES.map((option) => (
           <MenuItem
             key={option.value}
-            selected={option.value === LANGS[0].value}
             onClick={() => handleClose()}
             sx={{ typography: 'body2', py: 1 }}
           >
-            <Box component="img" alt={option.label} src={option.icon} sx={{ width: 28, mr: 2 }} />
-
             {option.label}
           </MenuItem>
         ))}
@@ -84,3 +78,4 @@ export default function LanguagePopover() {
     </>
   );
 }
+

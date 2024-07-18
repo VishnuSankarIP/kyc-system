@@ -32,16 +32,16 @@ export default function LoginView() {
   const [loginError, setLoginError] = useState("");
 
   const validateUsername = (username) => {
-    const usernameRegex = /^[a-zA-Z]+$/;
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
     return usernameRegex.test(username);
   };
-
+  
   const validatePassword = (password) => {
     // Minimum eight characters, at least one letter and one number
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*[^A-Za-z\d]).{8,}$/;
     return passwordRegex.test(password);
   };
-
+  
   const handleClick = async () => {
     const usernameInput = document.querySelector('input[name="username"]');
     const passwordInput = document.querySelector('input[name="password"]');
@@ -54,12 +54,12 @@ export default function LoginView() {
       setUsernameError("Field is required");
       valid = false;
     } else if (!validateUsername(username)) {
-      setUsernameError("Username must contain only alphabetic characters");
+      setUsernameError("Username not valid");
       valid = false;
     } else {
       setUsernameError("");
     }
-
+    
     if (!password) {
       setPasswordError("Field is required");
       valid = false;
@@ -86,26 +86,30 @@ export default function LoginView() {
           type: 'UPDATE_USER_DATA',
           user_data: {
             accessToken: access,
-            userType: response.data.employee_details.user_type,
-            firstName : response.data.employee_details.first_name,
-            lastName : response.data.employee_details.last_name,
-            profilePicture : response.data.employee_details.image,
-            userEmail: response.data.employee_details.email,
+            userType: response.data.user_type,
+            firstName : response.data.name,
+            staffRole: response.data.roles,
           },
         });
+        // Store currentRole in sessionStorage
+        // sessionStorage.setItem('currentRole', response.data.staffRole);
+        const staffRole = response.data.roles; // Assuming roles is the correct field name
+        sessionStorage.setItem('currentRole', JSON.stringify(staffRole));
         router.push('/');
+
       } else {
         console.log('Login res:', response);
         const { message } = response.data;
         setLoginError(message);
         console.log(message);
       }
-    } catch (error) {
+    } 
+    catch (error) {
       console.log('Login error:', error);
-      setLoginError('An error occurred during login. Please try again.');
+      // setLoginError('An error occurred during login. Please try again.');
     }
   };
-
+  
   const renderForm = (
     <>
       <Stack spacing={3}>

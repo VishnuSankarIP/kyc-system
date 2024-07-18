@@ -14,7 +14,10 @@ const initialState = {
     tokenExpiry: "",
     isSignup: false,
     firstName: "",
-    lastName: ""
+    lastName: "",
+    staffRole:[],
+    currentRole:""
+
   }
 };
 

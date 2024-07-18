@@ -8,7 +8,7 @@ export default function ProfilePage() {
   return (
     <>
       <Helmet>
-        <title> Profile | Dally HR </title>
+        <title> Profile | KYC System </title>
       </Helmet>
 
       <ProfileView />

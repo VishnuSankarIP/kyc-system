@@ -8,7 +8,7 @@ export default function ProductsPage() {
   return (
     <>
       <Helmet>
-        <title> Products | Dally HR </title>
+        <title> Products | KYC System </title>
       </Helmet>
 
       <ProductsView />

@@ -1,3 +1,236 @@
+
+// import PropTypes from 'prop-types';
+// import { useEffect, useContext } from 'react';
+
+// import Box from '@mui/material/Box';
+// import Stack from '@mui/material/Stack';
+// import Drawer from '@mui/material/Drawer';
+// import Button from '@mui/material/Button';
+// import Avatar from '@mui/material/Avatar';
+// import { alpha } from '@mui/material/styles';
+// import Typography from '@mui/material/Typography';
+// import ListItemButton from '@mui/material/ListItemButton';
+
+// import { Context } from 'src/routes/Store';
+// import { usePathname } from 'src/routes/hooks';
+// import { RouterLink } from 'src/routes/components';
+
+// import { useResponsive } from 'src/hooks/use-responsive';
+
+// import Logo from 'src/components/logo';
+// import Scrollbar from 'src/components/scrollbar';
+
+// import { NAV } from './config-layout';
+// // import { navConfigMicAdmin, navConfigCompanyAdmin, navConfigDataEntry, navConfigApprover } from './config-navigation';
+// import { navConfigApprover, navConfigCompanyAdmin, navConfigDataEntry, navConfigMicAdmin } from './config-navigation';
+
+
+// // ----------------------------------------------------------------------
+
+// export default function Nav({ openNav, onCloseNav }) {
+//   const pathname = usePathname();
+
+//   const upLg = useResponsive('up', 'lg');
+
+//   useEffect(() => {
+//     if (openNav) {
+//       onCloseNav();
+//     }
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [pathname]);
+
+//   const { state, dispatch } = useContext(Context);
+
+//   useEffect(() => {
+//     let user_data = localStorage.getItem("user_data");
+//     user_data = JSON.parse(user_data);
+
+//     if(user_data && user_data.staffRole)
+//     {
+//       sessionStorage.setItem("currentRole", user_data.staffRole);
+//     }
+
+//     dispatch({ type: "UPDATE_USER_DATA", user_data });
+//   }, [dispatch]);
+
+//   const employeFirstName = state.user_data.firstName;
+//   const employeLastName = state.user_data.lastName;
+//   const { profilePicture } = state.user_data;
+//   const userRole = state.user_data.userType;
+//   // const currentRole = state.user_data.staffRole;
+//   const currentRole = sessionStorage.getItem("currentRole");
+
+//   const renderAccount = (
+//     <Box
+//       sx={{
+//         my: 3,
+//         mx: 2.5,
+//         py: 2,
+//         px: 2.5,
+//         display: 'flex',
+//         borderRadius: 1.5,
+//         alignItems: 'center',
+//         bgcolor: (theme) => alpha(theme.palette.grey[500], 0.12),
+//       }}
+//     >
+//       <Avatar src={profilePicture} alt="photoURL" />
+//       <Box sx={{ ml: 2 }}>
+//         <Typography variant="subtitle2">{employeFirstName} {employeLastName}</Typography>
+//         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+//           {userRole}
+//         </Typography>
+//       </Box>
+//     </Box>
+//   );
+
+//   let navConfig = [];
+
+//   switch (userRole) {
+//     case 'mic_admin':
+//       navConfig = navConfigMicAdmin;
+//       break;
+//     case 'company_admin':
+//       navConfig = navConfigCompanyAdmin;
+//       break;
+//     case 'staff':
+//       switch (currentRole) {
+//         case 'data_entry':
+//           navConfig = navConfigDataEntry;
+//           break;
+//         case 'approver':
+//           navConfig = navConfigApprover;
+//           break;
+//         default:
+//           // Handle unexpected currentRole
+//           console.warn('Unknown currentRole:', currentRole);
+//           navConfig = []; // Default to an empty array or a fallback configuration
+//           break;
+//       }
+//       break;
+//     default:
+//       // Handle unexpected userRole
+//       console.warn('Unknown userRole:', userRole);
+//       navConfig = []; // Default to an empty array or a fallback configuration
+//       break;
+//   }
+  
+
+//   const renderMenu = (
+//     <Stack component="nav" spacing={0.5} sx={{ px: 2, marginTop: '1rem' }}>
+//       {navConfig.map((item) => (
+//         <NavItem key={item.title} item={item} />
+//       ))}
+//     </Stack>
+//   );
+
+//   const renderUpgrade = (
+//     <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
+//       <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
+//         <Button href="#" variant="contained" color="inherit">
+//           Upgrade to Pro
+//         </Button>
+//       </Stack>
+//     </Box>
+//   );
+
+//   const renderContent = (
+//     <Scrollbar
+//       sx={{
+//         height: 1,
+//         '& .simplebar-content': {
+//           height: 1,
+//           display: 'flex',
+//           flexDirection: 'column',
+//         },
+//       }}
+//     >
+//       <Logo sx={{ mt: 3, ml: 4 }} />
+//       {renderAccount}
+//       {renderMenu}
+//       <Box sx={{ flexGrow: 1 }} />
+//       {renderUpgrade}
+//     </Scrollbar>
+//   );
+
+//   return (
+//     <Box
+//       sx={{
+//         flexShrink: { lg: 0 },
+//         width: { lg: NAV.WIDTH },
+//       }}
+//     >
+//       {upLg ? (
+//         <Box
+//           sx={{
+//             height: 1,
+//             position: 'fixed',
+//             width: NAV.WIDTH,
+//             borderRight: (theme) => `dashed 1px ${theme.palette.divider}`,
+//           }}
+//         >
+//           {renderContent}
+//         </Box>
+//       ) : (
+//         <Drawer
+//           open={openNav}
+//           onClose={onCloseNav}
+//           PaperProps={{
+//             sx: {
+//               width: NAV.WIDTH,
+//             },
+//           }}
+//         >
+//           {renderContent}
+//         </Drawer>
+//       )}
+//     </Box>
+//   );
+// }
+
+// Nav.propTypes = {
+//   openNav: PropTypes.bool,
+//   onCloseNav: PropTypes.func,
+// };
+
+// // ----------------------------------------------------------------------
+
+// function NavItem({ item }) {
+//   const pathname = usePathname();
+
+//   const active = item.path === pathname;
+
+//   return (
+//     <ListItemButton
+//       component={RouterLink}
+//       href={item.path}
+//       sx={{
+//         minHeight: 44,
+//         borderRadius: 0.75,
+//         typography: 'body2',
+//         color: 'text.secondary',
+//         textTransform: 'capitalize',
+//         fontWeight: 'fontWeightMedium',
+//         ...(active && {
+//           color: 'primary.main',
+//           fontWeight: 'fontWeightSemiBold',
+//           bgcolor: (theme) => alpha(theme.palette.primary.main, 0.08),
+//           '&:hover': {
+//             bgcolor: (theme) => alpha(theme.palette.primary.main, 0.16),
+//           },
+//         }),
+//       }}
+//     >
+//       <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
+//         {item.icon}
+//       </Box>
+//       <Box component="span">{item.title}</Box>
+//     </ListItemButton>
+//   );
+// }
+
+// NavItem.propTypes = {
+//   item: PropTypes.object,
+// };
 import PropTypes from 'prop-types';
 import { useEffect, useContext } from 'react';
 
@@ -20,13 +253,12 @@ import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 
 import { NAV } from './config-layout';
-import navConfig from './config-navigation';
+import { navConfigApprover, navConfigCompanyAdmin, navConfigDataEntry, navConfigMicAdmin } from './config-navigation';
 
 // ----------------------------------------------------------------------
 
 export default function Nav({ openNav, onCloseNav }) {
   const pathname = usePathname();
-
   const upLg = useResponsive('up', 'lg');
 
   useEffect(() => {
@@ -36,18 +268,25 @@ export default function Nav({ openNav, onCloseNav }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const {state, dispatch} = useContext(Context);
-  
+  const { state, dispatch } = useContext(Context);
+
   useEffect(() => {
     let user_data = localStorage.getItem("user_data");
     user_data = JSON.parse(user_data);
+
+    if (user_data && user_data.staffRole) {
+      sessionStorage.setItem("currentRole", user_data.staffRole);
+    }
+
     dispatch({ type: "UPDATE_USER_DATA", user_data });
   }, [dispatch]);
 
-  const employeFirstName = state.user_data.firstName 
-  const employeLastName =  state.user_data.lastName
+  const employeFirstName = state.user_data.firstName;
+  const employeLastName = state.user_data.lastName;
   const { profilePicture } = state.user_data;
-  const userRole = state.user_data.userType
+  const userRole = state.user_data.userType;
+  const currentRole = sessionStorage.getItem("currentRole");
+  console.log(currentRole);
 
   const renderAccount = (
     <Box
@@ -63,10 +302,8 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Avatar src={profilePicture} alt="photoURL" />
-
       <Box sx={{ ml: 2 }}>
         <Typography variant="subtitle2">{employeFirstName} {employeLastName}</Typography>
-
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {userRole}
         </Typography>
@@ -74,8 +311,40 @@ export default function Nav({ openNav, onCloseNav }) {
     </Box>
   );
 
+  let navConfig = [];
+
+  switch (userRole) {
+    case 'mic_admin':
+      navConfig = navConfigMicAdmin;
+      break;
+    case 'company_admin':
+      navConfig = navConfigCompanyAdmin;
+      break;
+    case 'staff':
+      switch (currentRole) {
+        case 'data_entry':
+          navConfig = navConfigDataEntry;
+          break;
+        case 'approver':
+          navConfig = navConfigApprover;
+          break;
+        default:
+          // Handle unexpected currentRole
+          console.warn('Unknown currentRole:', currentRole);
+          navConfig = []; // Default to an empty array or a fallback configuration
+          break;
+      }
+      break;
+    default:
+      // Handle unexpected userRole
+      console.warn('Unknown userRole:', userRole);
+      navConfig = []; // Default to an empty array or a fallback configuration
+      break;
+  }
+
+
   const renderMenu = (
-    <Stack component="nav" spacing={0.5} sx={{ px: 2,marginTop: '1rem' }}>
+    <Stack component="nav" spacing={0.5} sx={{ px: 2, marginTop: '1rem' }}>
       {navConfig.map((item) => (
         <NavItem key={item.title} item={item} />
       ))}
@@ -85,12 +354,7 @@ export default function Nav({ openNav, onCloseNav }) {
   const renderUpgrade = (
     <Box sx={{ px: 2.5, pb: 3, mt: 10 }}>
       <Stack alignItems="center" spacing={3} sx={{ pt: 5, borderRadius: 2, position: 'relative' }}>
-
-        <Button
-          href="#"
-          variant="contained"
-          color="inherit"
-        >
+        <Button href="#" variant="contained" color="inherit">
           Upgrade to Pro
         </Button>
       </Stack>
@@ -109,13 +373,9 @@ export default function Nav({ openNav, onCloseNav }) {
       }}
     >
       <Logo sx={{ mt: 3, ml: 4 }} />
-
       {renderAccount}
-
       {renderMenu}
-
       <Box sx={{ flexGrow: 1 }} />
-
       {renderUpgrade}
     </Scrollbar>
   );
@@ -191,8 +451,7 @@ function NavItem({ item }) {
       <Box component="span" sx={{ width: 24, height: 24, mr: 2 }}>
         {item.icon}
       </Box>
-
-      <Box component="span">{item.title} </Box>
+      <Box component="span">{item.title}</Box>
     </ListItemButton>
   );
 }

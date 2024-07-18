@@ -8,7 +8,7 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> User | Dally HR </title>
+        <title> User | KYC System </title>
       </Helmet>
 
       <UserView />

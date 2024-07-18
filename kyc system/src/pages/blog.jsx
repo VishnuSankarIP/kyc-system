@@ -8,7 +8,7 @@ export default function BlogPage() {
   return (
     <>
       <Helmet>
-        <title> Blog | Dally HR </title>
+        <title> Blog | KYC System </title>
       </Helmet>
 
       <BlogView />

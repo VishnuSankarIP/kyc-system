@@ -8,7 +8,7 @@ export default function AppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Dally HR </title>
+        <title> Dashboard | KYC System </title>
       </Helmet>
 
       <AppView />

@@ -37,7 +37,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       width: '100%',
       height: '100%',
       borderRadius: '50%',
-      //   animation: 'ripple 1.2s infinite ease-in-out',
+   
       border: '1px solid currentColor',
       content: '""',
     },
@@ -57,13 +57,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const options = { day: 'numeric', month: 'short', year: 'numeric' };
 const currentDate = new Date().toLocaleDateString('en-GB', options);
 
-// const SmallAvatar = styled(Avatar)(({ theme }) => ({
-//   width: 22,
-//   height: 22,
-//   border: `2px solid ${theme.palette.background.paper}`,
-// }));
-
-// ----------------------------------------------------------------------
 
 export default function AppView() {
   const { state, dispatch } = useContext(Context);
@@ -90,6 +83,7 @@ export default function AppView() {
   const formattedTime = currentTime.toLocaleTimeString();
 
   return (
+
     <Container maxWidth="xl">
       <Typography variant="h4" sx={{ mb: 1 }}>
         Hi, Welcome {state.user_data.firstName} 👋
@@ -331,5 +325,8 @@ export default function AppView() {
         </Grid>
       </Grid>
     </Container>
+
+    
+
   );
 }

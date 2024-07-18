@@ -1,103 +1,93 @@
-import GroupIcon from '@mui/icons-material/Group';
-import InboxIcon from '@mui/icons-material/Inbox';
-// import GradingIcon from '@mui/icons-material/Grading';
-// import HowToRegIcon from '@mui/icons-material/HowToReg';
-// import ApartmentIcon from '@mui/icons-material/Apartment';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-// import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CorporateFareIcon from '@mui/icons-material/CorporateFare';
+import PeopleIcon from '@mui/icons-material/People';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
-
-// import SvgColor from 'src/components/svg-color';
-// ----------------------------------------------------------------------
-
-// const icon = (name) => (
-//   <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />
-// );
-
-const navConfig = [
+const navConfigMicAdmin = [
   {
-    title: 'dashboard',
-    path: '/',
+    title: 'Overview',
+    path: '/overviewtab',
     icon: <DashboardIcon />,
   },
   {
-    title: 'Screening',
+    title: 'Customers',
+    path: '/customers',
+    icon: <PeopleIcon />,
+  },
+  {
+    title: 'Screenings',
+    path: '/screenings',
     icon: <AccountCircleIcon />,
-    items: [
-      {
-        title: 'Sub-item 1',
-        path: '/screening/sub-item-1',
-        icon: <InboxIcon />,
-      },
-      {
-        title: 'Sub-item 2',
-        path: '/screening/sub-item-2',
-        icon: <GroupIcon />,
-      },
-    ],
-  },
-  // {
-  //   title: 'My Profile',
-  //   path: '/profile',
-  //   icon: <AccountCircleIcon />,
-  // },
-  {
-    title: 'inbox',
-    path: '/products',
-    icon: <InboxIcon />,
   },
   {
-    title: 'My team',
-    path: '/user',
-    icon: <GroupIcon />,
+    title: 'Approvals',
+    path: '/approvals',
+    icon: <CheckCircleIcon />,
   },
   {
-    title: 'Finance',
-    path: '/login',
-    icon: <AttachMoneyIcon />,
-  },
-  {
-    title: 'Organisation',
-    path: '/404',
-    icon: <CorporateFareIcon />,
+    title: 'Staffs',
+    path: '/staffs',
+    icon: <VisibilityIcon />,
   },
 ];
 
-// const navConfig = [
-//   {
-//     title: 'dashboard',
-//     path: '/',
-//     icon: <DashboardIcon />,
-//   },
-//   {
-//     title: 'attendance',
-//     path: '/user',
-//     icon: <HowToRegIcon />,
-//   },
-//   {
-//     title: 'leaves',
-//     path: '/products',
-//     icon: <PersonRemoveIcon />,
-//   },
-//   {
-//     title: 'employees',
-//     path: '/blog',
-//     icon: <GroupIcon />,
-//   },
-//   {
-//     title: 'departments',
-//     path: '/login',
-//     icon: <ApartmentIcon />,
-//   },
-//   {
-//     title: 'entitlements',
-//     path: '/404',
-//     icon: <GradingIcon />,
-//   },
-// ];
+const navConfigCompanyAdmin = [
+  {
+    title: 'Overview',
+    path: '/overviewtab',
+    icon: <DashboardIcon />,
+  },
+  {
+    title: 'Customers',
+    path: '/customers',
+    icon: <PeopleIcon />,
+  },
+  {
+    title: 'Staffs',
+    path: '/staffs',
+    icon: <VisibilityIcon />,
+  },
+];
 
-export default navConfig;
+const navConfigDataEntry = [
+  {
+    title: 'Overview',
+    path: '/overviewtab',
+    icon: <DashboardIcon />,
+  },
+  {
+    title: 'Screenings',
+    path: '/screenings',
+    icon: <AccountCircleIcon />,
+  },
+  {
+    title: 'Screened Data',
+    path: '/screened-data',
+    icon: <DataUsageIcon />,
+  },
+];
+
+const navConfigApprover = [
+  {
+    title: 'Overview',
+    path: '/overviewtab',
+    icon: <DashboardIcon />,
+  },
+  {
+    title: 'Approvals',
+    path: '/approvals',
+    icon: <CheckCircleIcon />,
+  },
+  {
+    title: 'Approved Data',
+    path: '/approved-data',
+    icon: <DataUsageIcon />,
+  },
+];
+
+export {navConfigApprover, navConfigMicAdmin,navConfigDataEntry , navConfigCompanyAdmin  };
+
