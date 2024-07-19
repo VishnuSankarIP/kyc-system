@@ -1,30 +1,27 @@
-import { useState } from 'react';
 
+import { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import PeopleIcon from '@mui/icons-material/People';
-
-// ----------------------------------------------------------------------
+import { Context } from 'src/routes/Store'; // Import the context
 
 const USER_TYPES = [
   {
     value: 'data_entry',
     label: 'Data Entry',
-    // icon: '/assets/icons/ic_flag_de.svg',
   },
   {
     value: 'approver',
     label: 'Approver',
-    // icon: '/assets/icons/ic_flag_fr.svg',
   },
 ];
 
-// ----------------------------------------------------------------------
-
 export default function ProfilePopover() {
+  const { state } = useContext(Context); // Get the state from the context
+  const { staffRole } = state.user_data; // Get staffRole from user_data
   const [open, setOpen] = useState(null);
 
   const handleOpen = (event) => {
@@ -34,6 +31,15 @@ export default function ProfilePopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+  const handleRoleChange = (role) => {
+    sessionStorage.setItem('currentRole', role);
+    handleClose();
+    window.location.reload(); // Reload to reflect the change in navigation
+  };
+
+  // Filter USER_TYPES based on staffRole
+  const filteredUserTypes = USER_TYPES.filter((type) => staffRole.includes(type.value));
 
   return (
     <>
@@ -65,10 +71,10 @@ export default function ProfilePopover() {
           },
         }}
       >
-        {USER_TYPES.map((option) => (
+        {filteredUserTypes.map((option) => (
           <MenuItem
             key={option.value}
-            onClick={() => handleClose()}
+            onClick={() => handleRoleChange(option.value)}
             sx={{ typography: 'body2', py: 1 }}
           >
             {option.label}
@@ -78,4 +84,5 @@ export default function ProfilePopover() {
     </>
   );
 }
+
 

@@ -8,6 +8,7 @@ const ChiefReducer = (state, action) => {
                 ...state,
                 user_data: updatedUserData,
             };
+        
 
         default:
             return state;
